@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VendorsRouteImport } from './routes/vendors'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as EmailIntakeRouteImport } from './routes/email-intake'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
 
@@ -22,6 +23,11 @@ const VendorsRoute = VendorsRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailIntakeRoute = EmailIntakeRouteImport.update({
+  id: '/email-intake',
+  path: '/email-intake',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,12 +43,14 @@ const ProjectsProjectIdRoute = ProjectsProjectIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/email-intake': typeof EmailIntakeRoute
   '/login': typeof LoginRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/email-intake': typeof EmailIntakeRoute
   '/login': typeof LoginRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -50,20 +58,33 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/email-intake': typeof EmailIntakeRoute
   '/login': typeof LoginRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/vendors' | '/projects/$projectId'
+  fullPaths:
+    | '/'
+    | '/email-intake'
+    | '/login'
+    | '/vendors'
+    | '/projects/$projectId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/vendors' | '/projects/$projectId'
-  id: '__root__' | '/' | '/login' | '/vendors' | '/projects/$projectId'
+  to: '/' | '/email-intake' | '/login' | '/vendors' | '/projects/$projectId'
+  id:
+    | '__root__'
+    | '/'
+    | '/email-intake'
+    | '/login'
+    | '/vendors'
+    | '/projects/$projectId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EmailIntakeRoute: typeof EmailIntakeRoute
   LoginRoute: typeof LoginRoute
   VendorsRoute: typeof VendorsRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
@@ -85,6 +106,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/email-intake': {
+      id: '/email-intake'
+      path: '/email-intake'
+      fullPath: '/email-intake'
+      preLoaderRoute: typeof EmailIntakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +132,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EmailIntakeRoute: EmailIntakeRoute,
   LoginRoute: LoginRoute,
   VendorsRoute: VendorsRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
