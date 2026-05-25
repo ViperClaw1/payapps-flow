@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VendorsRouteImport } from './routes/vendors'
 import { Route as PmReviewRouteImport } from './routes/pm-review'
+import { Route as OwnerPackageRouteImport } from './routes/owner-package'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ExceptionsRouteImport } from './routes/exceptions'
 import { Route as EmailIntakeRouteImport } from './routes/email-intake'
@@ -28,6 +29,11 @@ const VendorsRoute = VendorsRouteImport.update({
 const PmReviewRoute = PmReviewRouteImport.update({
   id: '/pm-review',
   path: '/pm-review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OwnerPackageRoute = OwnerPackageRouteImport.update({
+  id: '/owner-package',
+  path: '/owner-package',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/email-intake': typeof EmailIntakeRoute
   '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
+  '/owner-package': typeof OwnerPackageRoute
   '/pm-review': typeof PmReviewRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/email-intake': typeof EmailIntakeRoute
   '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
+  '/owner-package': typeof OwnerPackageRoute
   '/pm-review': typeof PmReviewRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/email-intake': typeof EmailIntakeRoute
   '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
+  '/owner-package': typeof OwnerPackageRoute
   '/pm-review': typeof PmReviewRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/email-intake'
     | '/exceptions'
     | '/login'
+    | '/owner-package'
     | '/pm-review'
     | '/vendors'
     | '/projects/$projectId'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/email-intake'
     | '/exceptions'
     | '/login'
+    | '/owner-package'
     | '/pm-review'
     | '/vendors'
     | '/projects/$projectId'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/email-intake'
     | '/exceptions'
     | '/login'
+    | '/owner-package'
     | '/pm-review'
     | '/vendors'
     | '/projects/$projectId'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   EmailIntakeRoute: typeof EmailIntakeRoute
   ExceptionsRoute: typeof ExceptionsRoute
   LoginRoute: typeof LoginRoute
+  OwnerPackageRoute: typeof OwnerPackageRoute
   PmReviewRoute: typeof PmReviewRoute
   VendorsRoute: typeof VendorsRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
@@ -174,6 +187,13 @@ declare module '@tanstack/react-router' {
       path: '/pm-review'
       fullPath: '/pm-review'
       preLoaderRoute: typeof PmReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/owner-package': {
+      id: '/owner-package'
+      path: '/owner-package'
+      fullPath: '/owner-package'
+      preLoaderRoute: typeof OwnerPackageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmailIntakeRoute: EmailIntakeRoute,
   ExceptionsRoute: ExceptionsRoute,
   LoginRoute: LoginRoute,
+  OwnerPackageRoute: OwnerPackageRoute,
   PmReviewRoute: PmReviewRoute,
   VendorsRoute: VendorsRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
