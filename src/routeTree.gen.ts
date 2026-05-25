@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VendorsRouteImport } from './routes/vendors'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ExceptionsRouteImport } from './routes/exceptions'
 import { Route as EmailIntakeRouteImport } from './routes/email-intake'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,6 +25,11 @@ const VendorsRoute = VendorsRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExceptionsRoute = ExceptionsRouteImport.update({
+  id: '/exceptions',
+  path: '/exceptions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EmailIntakeRoute = EmailIntakeRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/documents': typeof DocumentsRoute
   '/email-intake': typeof EmailIntakeRoute
+  '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/documents': typeof DocumentsRoute
   '/email-intake': typeof EmailIntakeRoute
+  '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/documents': typeof DocumentsRoute
   '/email-intake': typeof EmailIntakeRoute
+  '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/documents'
     | '/email-intake'
+    | '/exceptions'
     | '/login'
     | '/vendors'
     | '/projects/$projectId'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/documents'
     | '/email-intake'
+    | '/exceptions'
     | '/login'
     | '/vendors'
     | '/projects/$projectId'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/documents'
     | '/email-intake'
+    | '/exceptions'
     | '/login'
     | '/vendors'
     | '/projects/$projectId'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DocumentsRoute: typeof DocumentsRoute
   EmailIntakeRoute: typeof EmailIntakeRoute
+  ExceptionsRoute: typeof ExceptionsRoute
   LoginRoute: typeof LoginRoute
   VendorsRoute: typeof VendorsRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exceptions': {
+      id: '/exceptions'
+      path: '/exceptions'
+      fullPath: '/exceptions'
+      preLoaderRoute: typeof ExceptionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/email-intake': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DocumentsRoute: DocumentsRoute,
   EmailIntakeRoute: EmailIntakeRoute,
+  ExceptionsRoute: ExceptionsRoute,
   LoginRoute: LoginRoute,
   VendorsRoute: VendorsRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
