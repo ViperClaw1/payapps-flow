@@ -14,6 +14,7 @@ import { Route as PmReviewRouteImport } from './routes/pm-review'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ExceptionsRouteImport } from './routes/exceptions'
 import { Route as EmailIntakeRouteImport } from './routes/email-intake'
+import { Route as DrawReviewRouteImport } from './routes/draw-review'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as AccountingRouteImport } from './routes/accounting'
 import { Route as IndexRouteImport } from './routes/index'
@@ -44,6 +45,11 @@ const EmailIntakeRoute = EmailIntakeRouteImport.update({
   path: '/email-intake',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DrawReviewRoute = DrawReviewRouteImport.update({
+  id: '/draw-review',
+  path: '/draw-review',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DocumentsRoute = DocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accounting': typeof AccountingRoute
   '/documents': typeof DocumentsRoute
+  '/draw-review': typeof DrawReviewRoute
   '/email-intake': typeof EmailIntakeRoute
   '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accounting': typeof AccountingRoute
   '/documents': typeof DocumentsRoute
+  '/draw-review': typeof DrawReviewRoute
   '/email-intake': typeof EmailIntakeRoute
   '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/accounting': typeof AccountingRoute
   '/documents': typeof DocumentsRoute
+  '/draw-review': typeof DrawReviewRoute
   '/email-intake': typeof EmailIntakeRoute
   '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accounting'
     | '/documents'
+    | '/draw-review'
     | '/email-intake'
     | '/exceptions'
     | '/login'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accounting'
     | '/documents'
+    | '/draw-review'
     | '/email-intake'
     | '/exceptions'
     | '/login'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accounting'
     | '/documents'
+    | '/draw-review'
     | '/email-intake'
     | '/exceptions'
     | '/login'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccountingRoute: typeof AccountingRoute
   DocumentsRoute: typeof DocumentsRoute
+  DrawReviewRoute: typeof DrawReviewRoute
   EmailIntakeRoute: typeof EmailIntakeRoute
   ExceptionsRoute: typeof ExceptionsRoute
   LoginRoute: typeof LoginRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmailIntakeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/draw-review': {
+      id: '/draw-review'
+      path: '/draw-review'
+      fullPath: '/draw-review'
+      preLoaderRoute: typeof DrawReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/documents': {
       id: '/documents'
       path: '/documents'
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccountingRoute: AccountingRoute,
   DocumentsRoute: DocumentsRoute,
+  DrawReviewRoute: DrawReviewRoute,
   EmailIntakeRoute: EmailIntakeRoute,
   ExceptionsRoute: ExceptionsRoute,
   LoginRoute: LoginRoute,
