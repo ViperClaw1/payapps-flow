@@ -9,38 +9,255 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VendorsRouteImport } from './routes/vendors'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as PmReviewRouteImport } from './routes/pm-review'
+import { Route as OwnerPackageRouteImport } from './routes/owner-package'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ExceptionsRouteImport } from './routes/exceptions'
+import { Route as EmailIntakeRouteImport } from './routes/email-intake'
+import { Route as DrawReviewRouteImport } from './routes/draw-review'
+import { Route as DocumentsRouteImport } from './routes/documents'
+import { Route as AccountingRouteImport } from './routes/accounting'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
 
+const VendorsRoute = VendorsRouteImport.update({
+  id: '/vendors',
+  path: '/vendors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PmReviewRoute = PmReviewRouteImport.update({
+  id: '/pm-review',
+  path: '/pm-review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OwnerPackageRoute = OwnerPackageRouteImport.update({
+  id: '/owner-package',
+  path: '/owner-package',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExceptionsRoute = ExceptionsRouteImport.update({
+  id: '/exceptions',
+  path: '/exceptions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailIntakeRoute = EmailIntakeRouteImport.update({
+  id: '/email-intake',
+  path: '/email-intake',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DrawReviewRoute = DrawReviewRouteImport.update({
+  id: '/draw-review',
+  path: '/draw-review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsRoute = DocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountingRoute = AccountingRouteImport.update({
+  id: '/accounting',
+  path: '/accounting',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsProjectIdRoute = ProjectsProjectIdRouteImport.update({
+  id: '/projects/$projectId',
+  path: '/projects/$projectId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accounting': typeof AccountingRoute
+  '/documents': typeof DocumentsRoute
+  '/draw-review': typeof DrawReviewRoute
+  '/email-intake': typeof EmailIntakeRoute
+  '/exceptions': typeof ExceptionsRoute
+  '/login': typeof LoginRoute
+  '/owner-package': typeof OwnerPackageRoute
+  '/pm-review': typeof PmReviewRoute
+  '/settings': typeof SettingsRoute
+  '/vendors': typeof VendorsRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accounting': typeof AccountingRoute
+  '/documents': typeof DocumentsRoute
+  '/draw-review': typeof DrawReviewRoute
+  '/email-intake': typeof EmailIntakeRoute
+  '/exceptions': typeof ExceptionsRoute
+  '/login': typeof LoginRoute
+  '/owner-package': typeof OwnerPackageRoute
+  '/pm-review': typeof PmReviewRoute
+  '/settings': typeof SettingsRoute
+  '/vendors': typeof VendorsRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/accounting': typeof AccountingRoute
+  '/documents': typeof DocumentsRoute
+  '/draw-review': typeof DrawReviewRoute
+  '/email-intake': typeof EmailIntakeRoute
+  '/exceptions': typeof ExceptionsRoute
+  '/login': typeof LoginRoute
+  '/owner-package': typeof OwnerPackageRoute
+  '/pm-review': typeof PmReviewRoute
+  '/settings': typeof SettingsRoute
+  '/vendors': typeof VendorsRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/accounting'
+    | '/documents'
+    | '/draw-review'
+    | '/email-intake'
+    | '/exceptions'
+    | '/login'
+    | '/owner-package'
+    | '/pm-review'
+    | '/settings'
+    | '/vendors'
+    | '/projects/$projectId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/accounting'
+    | '/documents'
+    | '/draw-review'
+    | '/email-intake'
+    | '/exceptions'
+    | '/login'
+    | '/owner-package'
+    | '/pm-review'
+    | '/settings'
+    | '/vendors'
+    | '/projects/$projectId'
+  id:
+    | '__root__'
+    | '/'
+    | '/accounting'
+    | '/documents'
+    | '/draw-review'
+    | '/email-intake'
+    | '/exceptions'
+    | '/login'
+    | '/owner-package'
+    | '/pm-review'
+    | '/settings'
+    | '/vendors'
+    | '/projects/$projectId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountingRoute: typeof AccountingRoute
+  DocumentsRoute: typeof DocumentsRoute
+  DrawReviewRoute: typeof DrawReviewRoute
+  EmailIntakeRoute: typeof EmailIntakeRoute
+  ExceptionsRoute: typeof ExceptionsRoute
+  LoginRoute: typeof LoginRoute
+  OwnerPackageRoute: typeof OwnerPackageRoute
+  PmReviewRoute: typeof PmReviewRoute
+  SettingsRoute: typeof SettingsRoute
+  VendorsRoute: typeof VendorsRoute
+  ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vendors': {
+      id: '/vendors'
+      path: '/vendors'
+      fullPath: '/vendors'
+      preLoaderRoute: typeof VendorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pm-review': {
+      id: '/pm-review'
+      path: '/pm-review'
+      fullPath: '/pm-review'
+      preLoaderRoute: typeof PmReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/owner-package': {
+      id: '/owner-package'
+      path: '/owner-package'
+      fullPath: '/owner-package'
+      preLoaderRoute: typeof OwnerPackageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exceptions': {
+      id: '/exceptions'
+      path: '/exceptions'
+      fullPath: '/exceptions'
+      preLoaderRoute: typeof ExceptionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/email-intake': {
+      id: '/email-intake'
+      path: '/email-intake'
+      fullPath: '/email-intake'
+      preLoaderRoute: typeof EmailIntakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/draw-review': {
+      id: '/draw-review'
+      path: '/draw-review'
+      fullPath: '/draw-review'
+      preLoaderRoute: typeof DrawReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents': {
+      id: '/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accounting': {
+      id: '/accounting'
+      path: '/accounting'
+      fullPath: '/accounting'
+      preLoaderRoute: typeof AccountingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +265,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/$projectId': {
+      id: '/projects/$projectId'
+      path: '/projects/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof ProjectsProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountingRoute: AccountingRoute,
+  DocumentsRoute: DocumentsRoute,
+  DrawReviewRoute: DrawReviewRoute,
+  EmailIntakeRoute: EmailIntakeRoute,
+  ExceptionsRoute: ExceptionsRoute,
+  LoginRoute: LoginRoute,
+  OwnerPackageRoute: OwnerPackageRoute,
+  PmReviewRoute: PmReviewRoute,
+  SettingsRoute: SettingsRoute,
+  VendorsRoute: VendorsRoute,
+  ProjectsProjectIdRoute: ProjectsProjectIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
