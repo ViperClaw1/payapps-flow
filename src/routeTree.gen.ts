@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VendorsRouteImport } from './routes/vendors'
+import { Route as PmReviewRouteImport } from './routes/pm-review'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ExceptionsRouteImport } from './routes/exceptions'
 import { Route as EmailIntakeRouteImport } from './routes/email-intake'
@@ -20,6 +21,11 @@ import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projec
 const VendorsRoute = VendorsRouteImport.update({
   id: '/vendors',
   path: '/vendors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PmReviewRoute = PmReviewRouteImport.update({
+  id: '/pm-review',
+  path: '/pm-review',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/email-intake': typeof EmailIntakeRoute
   '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
+  '/pm-review': typeof PmReviewRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/email-intake': typeof EmailIntakeRoute
   '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
+  '/pm-review': typeof PmReviewRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/email-intake': typeof EmailIntakeRoute
   '/exceptions': typeof ExceptionsRoute
   '/login': typeof LoginRoute
+  '/pm-review': typeof PmReviewRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/email-intake'
     | '/exceptions'
     | '/login'
+    | '/pm-review'
     | '/vendors'
     | '/projects/$projectId'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/email-intake'
     | '/exceptions'
     | '/login'
+    | '/pm-review'
     | '/vendors'
     | '/projects/$projectId'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/email-intake'
     | '/exceptions'
     | '/login'
+    | '/pm-review'
     | '/vendors'
     | '/projects/$projectId'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   EmailIntakeRoute: typeof EmailIntakeRoute
   ExceptionsRoute: typeof ExceptionsRoute
   LoginRoute: typeof LoginRoute
+  PmReviewRoute: typeof PmReviewRoute
   VendorsRoute: typeof VendorsRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
 }
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/vendors'
       fullPath: '/vendors'
       preLoaderRoute: typeof VendorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pm-review': {
+      id: '/pm-review'
+      path: '/pm-review'
+      fullPath: '/pm-review'
+      preLoaderRoute: typeof PmReviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmailIntakeRoute: EmailIntakeRoute,
   ExceptionsRoute: ExceptionsRoute,
   LoginRoute: LoginRoute,
+  PmReviewRoute: PmReviewRoute,
   VendorsRoute: VendorsRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
 }
