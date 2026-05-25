@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VendorsRouteImport } from './routes/vendors'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as PmReviewRouteImport } from './routes/pm-review'
 import { Route as OwnerPackageRouteImport } from './routes/owner-package'
 import { Route as LoginRouteImport } from './routes/login'
@@ -24,6 +25,11 @@ import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projec
 const VendorsRoute = VendorsRouteImport.update({
   id: '/vendors',
   path: '/vendors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PmReviewRoute = PmReviewRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/owner-package': typeof OwnerPackageRoute
   '/pm-review': typeof PmReviewRoute
+  '/settings': typeof SettingsRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/owner-package': typeof OwnerPackageRoute
   '/pm-review': typeof PmReviewRoute
+  '/settings': typeof SettingsRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/owner-package': typeof OwnerPackageRoute
   '/pm-review': typeof PmReviewRoute
+  '/settings': typeof SettingsRoute
   '/vendors': typeof VendorsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/owner-package'
     | '/pm-review'
+    | '/settings'
     | '/vendors'
     | '/projects/$projectId'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/owner-package'
     | '/pm-review'
+    | '/settings'
     | '/vendors'
     | '/projects/$projectId'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/owner-package'
     | '/pm-review'
+    | '/settings'
     | '/vendors'
     | '/projects/$projectId'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   OwnerPackageRoute: typeof OwnerPackageRoute
   PmReviewRoute: typeof PmReviewRoute
+  SettingsRoute: typeof SettingsRoute
   VendorsRoute: typeof VendorsRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
 }
@@ -180,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/vendors'
       fullPath: '/vendors'
       preLoaderRoute: typeof VendorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pm-review': {
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   OwnerPackageRoute: OwnerPackageRoute,
   PmReviewRoute: PmReviewRoute,
+  SettingsRoute: SettingsRoute,
   VendorsRoute: VendorsRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
 }
